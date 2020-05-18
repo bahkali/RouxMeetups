@@ -2,14 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const FeedbackService = require('./services/FeedbackService');
-const SpeakersService = require('./services/SpeakerService');
+const SpeakerService = require('./services/SpeakerService');
 const cookieSession = require('cookie-session');
 
 const app = express();
 const PORT = 3500;
 
-const feedbackService = new FeedbackService('./data/feedback.json');
-const speakerService = new SpeakersService('./data/speakers.json');
+var feedbackService = new FeedbackService('./data/feedback.json');
+var speakerService = new SpeakerService('./data/speakers.json');
 
 const mainRoute = require('./routes/index');
 
@@ -40,8 +40,8 @@ app.use(async (req, res, next) => {
 });
 app.use(
   mainRoute({
-    feedbackService: feedbackService,
     speakerService: speakerService,
+    feedbackService: feedbackService,
   })
 );
 

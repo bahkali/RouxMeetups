@@ -8,6 +8,7 @@ module.exports = (params) => {
   router.route('/').get(async (req, res, next) => {
     const feedback = await feedbackService.getList();
 
+    console.log(feedback);
     res.render('layout', {
       pageTitle: 'Welcome Page',
       template: 'feedback',

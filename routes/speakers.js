@@ -2,10 +2,11 @@ const express = require('express');
 
 const router = express.Router();
 
-const SpeakersService = require('../services/SpeakerService');
-const speakerService = new SpeakersService('../data/speakers.json');
+module.exports = (params) => {
+  const speakerService = params.speakerService;
+  // console.log('Endpoint');
+  // console.log(params.speakerService);
 
-module.exports = () => {
   router.route('/').get(async (req, res, next) => {
     try {
       const speakers = await speakerService.getList();
